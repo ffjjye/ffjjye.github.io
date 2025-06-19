@@ -40,6 +40,7 @@
 
 <script>
 import bar from "../components/Bar.vue";
+import { mockBooks } from "@/mock/index.js";
 
 export default {
   data() {
@@ -90,9 +91,7 @@ export default {
         { text: "评分", value: "score" },
         { text: "操作", value: "action" },
       ],
-      book: [
-
-      ],
+      book: [],
     };
   },
   components: {
@@ -102,19 +101,33 @@ export default {
     this.searchBook();
   },
   methods: {
+    useMockData() {
+      this.book = mockBooks.map(book => ({
+        bookID: book.id,
+        bookName: book.title,
+        kind: book.category,
+        author: book.author,
+        score: book.rating
+      }));
+    },
+    
     searchBook() {
       this.$http({
         method: "get",
         url: "/searchBook",
       })
         .then((res) => {
-          if (res.data.success) {
+          if (res.data.success && res.data.book && res.data.book.length > 0) {
             console.log(res.data)
             this.book = res.data.book;
+          } else {
+            // 接口失败或返回空数据时使用mock
+            this.useMockData();
           }
         })
         .catch((e) => {
           console.log(e);
+          this.useMockData();
         });
     },
   },

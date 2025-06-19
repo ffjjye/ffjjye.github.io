@@ -39,7 +39,7 @@
         <v-list-item-group active-class="deep-purple--text text--accent-4">
           <v-list-item v-for="(member, i) in members" :key="i">
             <v-list-item-avatar :to="'/PersonalInfo/' + member.userID">
-              <img :src="'/' + member.headImage" />
+              <img :src="member.headImage" />
             </v-list-item-avatar>
             <v-list-item-content>
               <v-list-item-title v-text="member.username"></v-list-item-title>
@@ -152,7 +152,7 @@
 
         <v-list-item three-line>
           <v-list-item-avatar left size="200" color="grey">
-            <img :src="'/' + group.groupImage" />
+            <img :src="group.groupImage" />
           </v-list-item-avatar>
           <v-list-item-content>
             <div class="headline mb-3" style="margin-left: 70px">
@@ -287,6 +287,8 @@
 <script>
 import bar from "../components/Bar.vue";
 import qs from "qs";
+import { mockGroups, mockUser } from "@/mock/index.js";
+
 export default {
   inject: ["reload"],
   data: () => ({
@@ -303,6 +305,7 @@ export default {
       tag: "",
       isPrivate: false,
       groupImage: "",
+      createID: 1
     },
     members: [],
     tasks: [],
@@ -322,6 +325,80 @@ export default {
     this.getApply();
   },
   methods: {
+    useMockData() {
+      const groupId = parseInt(this.$route.params.id);
+      const mockGroup = mockGroups.find(group => group.id === groupId);
+      
+      if (mockGroup) {
+        this.group = {
+          groupName: mockGroup.name,
+          introduce: mockGroup.description,
+          tag: mockGroup.description,
+          isPrivate: false,
+          groupImage: require('@/assets/group-avatars/' + mockGroup.avatar),
+          createID: 1
+        };
+        
+        // Mock成员数据
+        this.members = [
+          {
+            userID: 1,
+            username: 'fjy',
+            headImage: require('@/assets/avatar.jpg')
+          },
+          {
+            userID: 2,
+            username: '张三',
+            headImage: require('@/assets/avatar.jpg')
+          },
+          {
+            userID: 3,
+            username: '李四',
+            headImage: require('@/assets/avatar.jpg')
+          }
+        ];
+        
+        // Mock任务数据
+        this.tasks = [
+          {
+            taskContent: '阅读《红楼梦》并写读书笔记',
+            createTime: '2024-01-01'
+          },
+          {
+            taskContent: '分享一篇文学创作',
+            createTime: '2024-01-02'
+          },
+          {
+            taskContent: '参与本周的读书讨论',
+            createTime: '2024-01-03'
+          }
+        ];
+        
+        // Mock热门讨论数据
+        this.hotForum = [
+          {
+            forumID: 1,
+            topic: '《红楼梦》中的人物形象分析',
+            createTime: '2024-01-01'
+          },
+          {
+            forumID: 2,
+            topic: '现代文学与传统文学的对比',
+            createTime: '2024-01-02'
+          },
+          {
+            forumID: 3,
+            topic: '如何提高写作水平',
+            createTime: '2024-01-03'
+          }
+        ];
+        
+        // 设置用户为成员
+        this.isMember = true;
+        this.isCollect = false;
+      }
+    },
+    
     getInit() {
       var a = { GroupID: this.$route.params.id };
       this.$http({
@@ -330,7 +407,7 @@ export default {
         params: { GroupID: this.$route.params.id },
       })
         .then((res) => {
-          if (res.data.success) {
+          if (res.data.success && res.data.GroupInfo) {
             if (
               this.isGroupMember(
                 this.$store.state.person.userID,
@@ -342,14 +419,18 @@ export default {
               this.isMember = false;
             }
             this.group = res.data.GroupInfo;
-            this.members = res.data.MemberUser;
-            this.hotForum = res.data.HotForum;
+            this.members = res.data.MemberUser || [];
+            this.hotForum = res.data.HotForum || [];
             this.isCollect = res.data.isCollect;
-            this.tasks = res.data.TaskList;
+            this.tasks = res.data.TaskList || [];
+          } else {
+            // 接口失败或返回空数据时使用mock
+            this.useMockData();
           }
         })
         .catch((err) => {
           console.log(err);
+          this.useMockData();
         });
     },
     isGroupMember(userID, memberList) {

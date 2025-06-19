@@ -18,13 +18,13 @@
           <v-list-item three-line>
             <v-list-item-avatar left size="200" color="grey">
               <img
-                src="https://cdn.vuetifyjs.com/images/john.jpg"
-                alt="作者用户名"
+                :src="bookReviewCommentUser[0] && bookReviewCommentUser[0].headImage ? bookReviewCommentUser[0].headImage : require('@/assets/avatar.jpg')"
+                :alt="bookReviewInfo.username"
               />
             </v-list-item-avatar>
             <v-list-item-content>
               <div class="headline mb-4" style="margin-left:70px">{{bookReviewInfo.title}}</div>
-              <v-list-item-title style="margin-left:70px"> {{bookReviewInfo.content}}</v-list-item-title>
+              <div style="margin-left:70px; white-space: pre-wrap; word-wrap: break-word; max-width: 100%;">{{bookReviewInfo.content}}</div>
               <v-list-item-subtitle style="margin-left:70px">{{bookReviewInfo.score}}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
@@ -47,7 +47,7 @@
               
             <p >
               <v-avatar size="30">
-              <img :src="'/'+bookReviewCommentUser[i].headImage"/>
+              <img :src="bookReviewCommentUser[i].headImage"/>
             </v-avatar>
               {{bookReviewCommentUser[i].username}}
               ——
@@ -82,6 +82,7 @@
 
 <script>
 import Bar from "../components/Bar.vue";
+import { mockReviews, mockUser } from "@/mock/index.js";
 export default {
   setup() {},
   created() {
@@ -90,9 +91,7 @@ export default {
   data: () => ({
     content:"",
     panel:[0],
-    bookReviewInfo:{
-      
-    },
+    bookReviewInfo:{},
     isCollect: false,
     bookReviewCommentList:[
       {content:"从前有座山.........",
@@ -103,6 +102,48 @@ export default {
     ],
   }),
   methods: {
+    useMockData() {
+      const reviewId = parseInt(this.$route.params.id);
+      const mockReview = mockReviews.find(review => review.id === reviewId);
+      if (mockReview) {
+        this.bookReviewInfo = {
+          title: mockReview.content.substring(0, 20) + '...',
+          content: mockReview.content,
+          score: mockReview.rating,
+          userID: mockReview.userId,
+          username: mockUser.username
+        };
+        // 多条mock评论
+        if (reviewId === 1) {
+          this.bookReviewCommentList = [
+            { content: '我也很喜欢红楼梦，人物描写太细腻了！', commentTime: '2024-01-10' },
+            { content: '宝黛爱情真的让人唏嘘。', commentTime: '2024-01-11' },
+            { content: '四大家族的兴衰很有历史感。', commentTime: '2024-01-12' }
+          ];
+        } else if (reviewId === 2) {
+          this.bookReviewCommentList = [
+            { content: '悉达多的成长让我很有共鸣。', commentTime: '2024-01-13' },
+            { content: '黑塞的哲思很深刻。', commentTime: '2024-01-14' }
+          ];
+        } else if (reviewId === 3) {
+          this.bookReviewCommentList = [
+            { content: '阿德勒心理学很实用。', commentTime: '2024-01-15' },
+            { content: '对自我接纳的讨论很有启发。', commentTime: '2024-01-16' }
+          ];
+        } else {
+          this.bookReviewCommentList = [
+            { content: '很棒的书评！', commentTime: '2024-01-10' }
+          ];
+        }
+        // 所有评论用户都为fjy
+        this.bookReviewCommentUser = this.bookReviewCommentList.map(() => ({
+          username: mockUser.username,
+          headImage: mockUser.avatar
+        }));
+        // 只允许id为2（悉达多）为收藏
+        this.isCollect = reviewId === 2;
+      }
+    },
     toEditBookReview() {
       this.$router.push({ path: "/Book/EditBookReview/"+this.$route.params.id });
     },
@@ -177,15 +218,17 @@ export default {
         params:{ BookReviewID:this.$route.params.id,}
       })
         .then((res) => {
-          if (res.data.success) {
+          if (res.data.success && res.data.bookReviewInfo) {
             this.bookReviewInfo = res.data.bookReviewInfo;
             this.bookReviewCommentList = res.data.bookReviewCommentList;
             this.bookReviewCommentUser = res.data.bookReviewCommentUser;
             this.isCollect = res.data.isCollect;
+          } else {
+            this.useMockData();
           }
         })
         .catch((err) => {
-          console.log(err);
+          this.useMockData();
         });
     },
   },

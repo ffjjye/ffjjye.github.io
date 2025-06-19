@@ -73,6 +73,8 @@
 
 <script>
 import Bar from "../components/Bar.vue";
+import { mockReviews, mockUser } from "@/mock/index.js";
+
 export default {
   data: () => ({
     tab: [],
@@ -94,18 +96,27 @@ export default {
   },
   methods: {
     showBookReview() {
-      // 使用 Vuex store 中的模拟数据
-      this.myBookReview = this.$store.state.reviews.map(review => ({
+      // 直接使用 mock 数据，确保用户名为 fjy
+      this.myBookReview = mockReviews.map(review => ({
         bookReviewID: review.id,
         reviewTime: review.createTime,
         title: review.content.substring(0, 20) + '...',
-        author: review.username,
+        author: mockUser.username, // 使用 fjy
         content: review.content,
         score: review.rating
       }));
 
-      // 使用相同的书评作为收藏书评
-      this.bookReviewCollection = this.myBookReview;
+      // 收藏书评只显示 id 为 2（悉达多）的书评
+      this.bookReviewCollection = mockReviews
+        .filter(review => review.id === 2)
+        .map(review => ({
+          bookReviewID: review.id,
+          reviewTime: review.createTime,
+          title: review.content.substring(0, 20) + '...',
+          author: mockUser.username, // 使用 fjy
+          content: review.content,
+          score: review.rating
+        }));
     },
     toCheckBookReview(bookReviewID) {
       this.$router.push({ path: "/Book/CheckBookReview/" + bookReviewID });
