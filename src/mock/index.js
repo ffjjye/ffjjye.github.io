@@ -15,7 +15,7 @@ export const mockGroups = [
     id: 1,
     name: '读书会',
     description: '分享读书心得，交流阅读体验',
-    memberCount: 156,
+    memberCount: 3,
     bookCount: 89,
     createTime: '2024-01-01',
     avatar: 'group1.jpg'
@@ -24,7 +24,7 @@ export const mockGroups = [
     id: 2,
     name: '文学爱好者',
     description: '文学创作与欣赏',
-    memberCount: 89,
+    memberCount: 3,
     bookCount: 45,
     createTime: '2024-01-02',
     avatar: 'group2.jpg'
@@ -38,7 +38,7 @@ export const mockBooks = [
     author: '[清] 曹雪芹 著 / 高鹗',
     cover: require('@/assets/book-covers/hongloumeng.jpg'),
     description: '《红楼梦》是一部百科全书式的长篇小说。以宝黛爱情悲剧为主线，以四大家族的荣辱兴衰为背景，描绘出18世纪中国封建社会的方方面面，以及封建专制下新兴资本主义民主思想的萌动。结构宏大、情节委婉、细节精致，人物形象栩栩如生，声口毕现，堪称中国古代小说中的经典。',
-    rating: 9.7,
+    rating: 5,
     reviewCount: 445601,
     publishDate: '1996-12',
     publisher: '人民文学出版社',
@@ -54,7 +54,7 @@ export const mockBooks = [
     author: '[德] 赫尔曼·黑塞',
     cover: require('@/assets/book-covers/xiduo.jpg'),
     description: '《悉达多》并非是佛陀的故事，它讲述了一个人的一生，千万寻常人亦会经历的一生。意气风发的少年郎，常认为自己是被命运选中的人。抛下过去，随了跌跌撞撞的步伐，找寻心中的声音，追逐名利，经历友情，品尝爱情。不同的是，悉达多一生追求的是生命的圆融统一，看似宏大，确是每个人无法回避的问题。',
-    rating: 9.2,
+    rating: 5,
     reviewCount: 150030,
     publishDate: '2017-1',
     publisher: '天津人民出版社',
@@ -70,7 +70,7 @@ export const mockBooks = [
     author: '岸见一郎 / 古贺史健',
     cover: require('@/assets/book-covers/beitaoyan.jpg'),
     description: '本书用"青年与哲人的对话"这一故事形式总结了与弗洛伊德、荣格并称为"心理学三大巨头"的阿尔弗雷德·阿德勒的思想(阿德勒心理学)。风靡欧美的阿德勒心理学对于"人如何能够获得幸福"这个哲学问题给出了极其简单而又具体的"答案"。',
-    rating: 8.3,
+    rating: 5,
     reviewCount: 40294,
     publishDate: '2021-1',
     publisher: '机械工业出版社',
@@ -109,7 +109,7 @@ export const mockReviews = [
     userId: 1,
     username: 'fjy',
     content: '《被讨厌的勇气》以对话的形式深入浅出地介绍了阿德勒心理学。书中关于人际关系、自我接纳、人生意义的讨论非常实用，对现代人的心理困扰很有帮助。',
-    rating: 4,
+    rating: 5,
     createTime: '2024-01-03',
     likes: 28
   }

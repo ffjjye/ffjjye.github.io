@@ -104,6 +104,19 @@ export default {
   methods: {
     useMockData() {
       const reviewId = parseInt(this.$route.params.id);
+      if(reviewId === 3) {
+        this.bookReviewInfo = {
+          title: "111",
+          content: "很好",
+          score: 5,
+          userID: "fjy",
+          username: "fjy"
+        };
+        this.bookReviewCommentList = [];
+        this.bookReviewCommentUser = [];
+        this.isCollect = false; // 默认未收藏
+        return;
+      }
       const mockReview = mockReviews.find(review => review.id === reviewId);
       if (mockReview) {
         this.bookReviewInfo = {
@@ -124,11 +137,6 @@ export default {
           this.bookReviewCommentList = [
             { content: '悉达多的成长让我很有共鸣。', commentTime: '2024-01-13' },
             { content: '黑塞的哲思很深刻。', commentTime: '2024-01-14' }
-          ];
-        } else if (reviewId === 3) {
-          this.bookReviewCommentList = [
-            { content: '阿德勒心理学很实用。', commentTime: '2024-01-15' },
-            { content: '对自我接纳的讨论很有启发。', commentTime: '2024-01-16' }
           ];
         } else {
           this.bookReviewCommentList = [

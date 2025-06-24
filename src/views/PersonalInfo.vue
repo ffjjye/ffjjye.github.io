@@ -19,13 +19,12 @@
         <v-card-title class="white--text mt-8">
           <v-avatar size="56">
             <img
-                :src="'/'+this.headImage"
+                :src="this.headImage"
                 :alt="this.username"
               />
           </v-avatar>
           <p class="ml-3">{{username}}</p>
           <v-spacer></v-spacer>
-          <el-button type="warning" round v-if="!isFollowed && $store.state.person.userID !== this.userID" @click="follow">关注该用户</el-button>
         </v-card-title>
       </v-img>
 

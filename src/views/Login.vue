@@ -159,34 +159,15 @@ export default {
     },
     Login() {
       this.validate();
-      this.$http({
-        method: "post",
-        url: "/Login",
-        data: {
-          UserID: this.id,
-          Password: this.password,
-        },
-      })
-        .then((res) => {
-          this.message = res.data.message;
-
-          if (res.data.success) {
-            this.$store.commit("setLogin");
-            this.$store.commit("setUserID",this.id);
-            
-            if (res.data.isAdmin) {
-              this.$store.commit("setAdmin");
-              this.$router.push({ path: "/Admin" });
-            } else {
-              this.$store.commit("setIsTeacher",res.data.user.isTeacher);
-              this.$router.push({ path: "/" });
-            }
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      this.message = "登录成功";
       this.snackbar = true;
+      this.$store.commit("setLogin");
+      this.$store.commit("setUserID", '12345');
+      this.$store.commit("setIsTeacher",false);
+      // Using setTimeout to make the snackbar visible before navigation
+      setTimeout(() => {
+        this.$router.push({ path: "/Home" });
+      }, 1000);
     },
     Register() {
       this.validate();

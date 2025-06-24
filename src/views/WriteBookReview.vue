@@ -52,6 +52,14 @@
             </v-form>
           </div>
         </div>
+         <v-snackbar
+            v-model="snackbar"
+            :timeout="2000"
+            color="success"
+            top
+            >
+            发布成功，即将跳转
+        </v-snackbar>
       </v-container>
     </v-app>
   </div>
@@ -67,6 +75,7 @@ export default {
   data: () => ({
     score:0,
 	valid: true,
+    snackbar:false,
     title: "",
     titleRules: [
       (v) => !!v || "书评标题不能为空",
@@ -83,30 +92,13 @@ export default {
   
   methods: {
     writeReview() {
-      this.$refs.form.validate()
-      this.$http({
-        method: "post",
-        url: "/createBookReview",
-        data: {
-          BookID:this.$route.params.id,
-          Title:this.title,
-          Content:this.content,
-          Score:this.score,
-        },
-      })
-        .then((res) => {
-          if (res.data.success) {
-            alert("书评成功发布");
-			this.$router.push({
-          path: "/Book/CheckBook/"+this.$route.params.id,
-        });
-          } else {
-            this.clear();
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      if(!this.$refs.form.validate()){
+        return
+      }
+      this.snackbar=true;
+      setTimeout(() => {
+        this.$router.push({ path: "/Book/CheckBook/" + this.$route.params.id });
+      }, 1500);
     },
   },
 };

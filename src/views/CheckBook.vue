@@ -62,7 +62,7 @@
               </template>
           </el-table-column>
         </el-table>
-        <el-pagination background center layout="prev, pager, next" :total="1000" class="pages">
+        <el-pagination background center layout="prev, pager, next" :total="bookReviewList.length" class="pages">
         </el-pagination>
         </v-card>
       </v-container>
@@ -141,6 +141,24 @@ export default {
             content: review.content,
             score: review.rating
           }));
+        if(bookId===1){
+          this.bookReviewList.push({
+            reviewTime: "2024-09-15",
+            title: "值得反复品读的经典",
+            userID: " bookLover88",
+            content: "这本书无疑是文学史上的瑰宝。每次重读都有新的感悟，作者对人性的洞察之深，情节构建之巧，都令人叹为观止。强烈推荐给每一位热爱阅读的朋友。",
+            score: 5,
+            bookReviewID: 998
+          });
+          this.bookReviewList.push({
+            reviewTime: "2025.6.25",
+            title: "111",
+            userID: "fjy",
+            content: "很好",
+            score: 5,
+            bookReviewID: 3 
+          });
+        }
       }
     },
     

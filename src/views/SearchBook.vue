@@ -26,8 +26,7 @@
         <v-row class="searchText" justify="center">搜索结果</v-row>
         <v-data-table
           :headers="headers"
-          :items="book"
-          :search="search"
+          :items="filteredBooks"
         >
         <template v-slot:item.action="{ item }">
           <v-btn text color="cyan" :to="'/Book/CheckBook/' + item.bookID"> 查看 </v-btn>
@@ -91,45 +90,30 @@ export default {
         { text: "评分", value: "score" },
         { text: "操作", value: "action" },
       ],
-      book: [],
+      book: mockBooks.map(b => ({
+        bookID: b.id,
+        bookName: b.title,
+        kind: b.category,
+        author: b.author,
+        score: b.rating
+      })),
     };
+  },
+  computed: {
+    filteredBooks() {
+      if (!this.search) {
+        return this.book;
+      }
+      return this.book.filter(book => {
+        return book.bookName.toLowerCase().includes(this.search.toLowerCase());
+      });
+    }
   },
   components: {
     bar,
   },
-  created() {
-    this.searchBook();
-  },
+  created() {},
   methods: {
-    useMockData() {
-      this.book = mockBooks.map(book => ({
-        bookID: book.id,
-        bookName: book.title,
-        kind: book.category,
-        author: book.author,
-        score: book.rating
-      }));
-    },
-    
-    searchBook() {
-      this.$http({
-        method: "get",
-        url: "/searchBook",
-      })
-        .then((res) => {
-          if (res.data.success && res.data.book && res.data.book.length > 0) {
-            console.log(res.data)
-            this.book = res.data.book;
-          } else {
-            // 接口失败或返回空数据时使用mock
-            this.useMockData();
-          }
-        })
-        .catch((e) => {
-          console.log(e);
-          this.useMockData();
-        });
-    },
   },
 };
 </script>

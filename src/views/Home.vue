@@ -1,6 +1,6 @@
 <template>
   <div class="home" >
-    <v-app-bar app elevate-on-scroll color="#efeeee" light inverted-scroll>
+    <v-app-bar app elevate-on-scroll color="#efeeee" light>
       <el-menu
         class="menu"
         mode="horizontal"
