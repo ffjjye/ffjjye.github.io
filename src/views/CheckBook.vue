@@ -143,7 +143,7 @@ export default {
           }));
         if(bookId===1){
           this.bookReviewList.push({
-            reviewTime: "2024-09-15",
+            reviewTime: "2025-05-20",
             title: "值得反复品读的经典",
             userID: " bookLover88",
             content: "这本书无疑是文学史上的瑰宝。每次重读都有新的感悟，作者对人性的洞察之深，情节构建之巧，都令人叹为观止。强烈推荐给每一位热爱阅读的朋友。",
@@ -156,7 +156,7 @@ export default {
             userID: "fjy",
             content: "很好",
             score: 5,
-            bookReviewID: 3 
+            bookReviewID: 4 
           });
         }
       }

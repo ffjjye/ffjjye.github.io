@@ -66,19 +66,8 @@ export default {
         this.$router.push({path:"/BlogList"});
       },
       logout(){
-//        this.$store.commit('setLogout')
-//        this.$router.push({path:"/"});
-        this.$http({
-          method:'post',
-          url:"/logout",
-        }).then(res=>{
-          if(res.data.success){
-            this.$store.commit('setLogout')
-            this.$router.push({path:"/"});
-            sessionStorage.clear();
-          }
-        })
-        
+        this.$store.commit('setLogout')
+        this.$router.push({path:"/Login"});
       }
   },
 }

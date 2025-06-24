@@ -57,7 +57,7 @@
                   max-width="800"
                   :elevation="hover ? 24 : 2"
                   :class="{ 'on-hover': hover }"
-                  :to=" item.bookReviewID"
+                  :to="'/Book/CheckBookReview/' + item.bookReviewID"
                 >
                   <v-card-title class="title font-weight-bold black--text" >
                     <v-icon large left color="grey darken-2">

@@ -80,28 +80,20 @@ export default {
     messageTargetList: [
       {
         userID: 2,
-        username: "张教授",
-        headImage: require("@/assets/avatar.jpg"),
-        role: "导师",
-        latestMessage: "这是个很有意义的研究方向。",
-        latestTime: "2025-05-10 10:15"
+        username: "张三",
+        headImage: require("@/assets/group-avatars/group1.jpg"),
+        role: "文学圈成员",
+        latestMessage: "最近在读《红楼梦》，确实名不虚传！",
+        latestTime: "2025-06-10 09:20"
       },
       {
         userID: 3,
-        username: "李同学",
-        headImage: require("@/assets/avatar.jpg"),
-        role: "同学",
-        latestMessage: "嗨，你上次推荐的书怎么样？",
-        latestTime: "2025-05-20 11:30"
+        username: "李四",
+        headImage: require("@/assets/group-avatars/group2.jpg"),
+        role: "文学圈成员",
+        latestMessage: "我更推荐《悉达多》，黑塞的文字很有力量。",
+        latestTime: "2025-06-11 14:45"
       },
-      {
-        userID: 4,
-        username: "王同学",
-        headImage: require("@/assets/avatar.jpg"),
-        role: "同学",
-        latestMessage: "明天有空一起去图书馆吗？",
-        latestTime: "2025-06-01 14:00"
-      }
     ],
     systemMessageList: [],
   }),

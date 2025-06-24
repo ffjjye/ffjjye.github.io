@@ -1,11 +1,11 @@
 // 模拟数据
 export const mockUser = {
-  id: 1,
+  userID: 1,
   username: 'fjy',
   avatar: require('@/assets/avatar.jpg'),
   email: 'test@example.com',
   bio: '这是一个测试用户账号',
-  joinDate: '2024-01-01',
+  joinDate: '2025-04-01',
   followers: 128,
   following: 256
 };
@@ -17,7 +17,7 @@ export const mockGroups = [
     description: '分享读书心得，交流阅读体验',
     memberCount: 3,
     bookCount: 89,
-    createTime: '2024-01-01',
+    createTime: '2025-04-05',
     avatar: 'group1.jpg'
   },
   {
@@ -26,7 +26,7 @@ export const mockGroups = [
     description: '文学创作与欣赏',
     memberCount: 3,
     bookCount: 45,
-    createTime: '2024-01-02',
+    createTime: '2025-04-06',
     avatar: 'group2.jpg'
   }
 ];
@@ -90,7 +90,7 @@ export const mockReviews = [
     username: 'fjy',
     content: '《红楼梦》不愧为中国古典文学的巅峰之作。曹雪芹以细腻的笔触描绘了一个封建大家族的兴衰，通过宝黛的爱情悲剧，展现了人性的复杂和社会的矛盾。每个人物都栩栩如生，情节环环相扣，读来令人回味无穷。',
     rating: 5,
-    createTime: '2024-01-01',
+    createTime: '2025-04-10',
     likes: 45
   },
   {
@@ -100,7 +100,7 @@ export const mockReviews = [
     username: 'fjy',
     content: '《悉达多》是一本充满哲思的小说。黑塞通过悉达多的求道之路，展现了人生追求真理的过程。书中对生命、爱情、欲望的思考深刻而富有诗意，读来令人深思。',
     rating: 5,
-    createTime: '2024-01-02',
+    createTime: '2025-04-11',
     likes: 32
   },
   {
@@ -110,7 +110,7 @@ export const mockReviews = [
     username: 'fjy',
     content: '《被讨厌的勇气》以对话的形式深入浅出地介绍了阿德勒心理学。书中关于人际关系、自我接纳、人生意义的讨论非常实用，对现代人的心理困扰很有帮助。',
     rating: 5,
-    createTime: '2024-01-03',
+    createTime: '2025-04-12',
     likes: 28
   }
 ];
@@ -121,14 +121,14 @@ export const mockMessages = [
     fromUserId: 2,
     fromUsername: '用户A',
     content: '你好，很高兴认识你！',
-    createTime: '2024-01-01 10:00:00'
+    createTime: '2025-04-15 10:00:00'
   },
   {
     id: 2,
     fromUserId: 3,
     fromUsername: '用户B',
     content: '最近在读什么书？',
-    createTime: '2024-01-02 15:30:00'
+    createTime: '2025-04-16 15:30:00'
   }
 ];
 
@@ -138,7 +138,7 @@ export const mockUpdates = [
     userId: 1,
     username: 'fjy',
     content: '今天读完了《红楼梦》，被曹雪芹细腻的笔触和深刻的人性描写所震撼。每个人物都栩栩如生，情节环环相扣，不愧为中国古典文学的巅峰之作。',
-    createTime: '2024-01-01 14:30:00',
+    createTime: '2025-04-20 14:30:00',
     likes: 45,
     comments: 12
   },
@@ -147,7 +147,7 @@ export const mockUpdates = [
     userId: 1,
     username: 'fjy',
     content: '《悉达多》让我对人生有了新的思考。黑塞通过悉达多的求道之路，展现了生命的意义和追求真理的过程。',
-    createTime: '2024-01-02 09:15:00',
+    createTime: '2025-04-21 09:15:00',
     likes: 32,
     comments: 8
   },
@@ -156,7 +156,7 @@ export const mockUpdates = [
     userId: 1,
     username: 'fjy',
     content: '《被讨厌的勇气》中的阿德勒心理学观点很有启发性，特别是关于人际关系和自我接纳的讨论，对现代人的心理困扰很有帮助。',
-    createTime: '2024-01-03 16:20:00',
+    createTime: '2025-04-22 16:20:00',
     likes: 28,
     comments: 6
   }

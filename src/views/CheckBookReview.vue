@@ -104,7 +104,7 @@ export default {
   methods: {
     useMockData() {
       const reviewId = parseInt(this.$route.params.id);
-      if(reviewId === 3) {
+      if(reviewId === 4) {
         this.bookReviewInfo = {
           title: "111",
           content: "很好",
@@ -129,25 +129,44 @@ export default {
         // 多条mock评论
         if (reviewId === 1) {
           this.bookReviewCommentList = [
-            { content: '我也很喜欢红楼梦，人物描写太细腻了！', commentTime: '2024-01-10' },
-            { content: '宝黛爱情真的让人唏嘘。', commentTime: '2024-01-11' },
-            { content: '四大家族的兴衰很有历史感。', commentTime: '2024-01-12' }
+            { content: '我也很喜欢红楼梦，人物描写太细腻了！', commentTime: '2025-05-01' },
+            { content: '宝黛爱情真的让人唏嘘。', commentTime: '2025-05-02' },
+            { content: '四大家族的兴衰很有历史感。', commentTime: '2025-05-03' }
+          ];
+          this.bookReviewCommentUser = [
+              { username: '张三', headImage: require('@/assets/group-avatars/group1.jpg') },
+              { username: '李四', headImage: require('@/assets/group-avatars/group2.jpg') }
           ];
         } else if (reviewId === 2) {
           this.bookReviewCommentList = [
-            { content: '悉达多的成长让我很有共鸣。', commentTime: '2024-01-13' },
-            { content: '黑塞的哲思很深刻。', commentTime: '2024-01-14' }
+            { content: '悉达多的成长让我很有共鸣。', commentTime: '2025-05-05' },
+            { content: '黑塞的哲思很深刻。', commentTime: '2025-05-06' }
+          ];
+          this.bookReviewCommentUser = [
+              { username: '张三', headImage: require('@/assets/group-avatars/group1.jpg') },
+              { username: 'fjy', headImage: require('@/assets/avatar.jpg') }
+          ];
+        } else if (reviewId === 3) {
+          this.bookReviewCommentList = [
+            { content: '阿德勒心理学确实很有启发。', commentTime: '2025-05-15' },
+            { content: '这本书改变了我对人际关系的看法。', commentTime: '2025-05-16' }
+          ];
+          this.bookReviewCommentUser = [
+              { username: '李四', headImage: require('@/assets/group-avatars/group2.jpg') },
+              { username: '张三', headImage: require('@/assets/group-avatars/group1.jpg') }
           ];
         } else {
           this.bookReviewCommentList = [
-            { content: '很棒的书评！', commentTime: '2024-01-10' }
+            { content: '很棒的书评！', commentTime: '2025-05-10' }
           ];
         }
         // 所有评论用户都为fjy
-        this.bookReviewCommentUser = this.bookReviewCommentList.map(() => ({
-          username: mockUser.username,
-          headImage: mockUser.avatar
-        }));
+        if(![1, 2, 3].includes(reviewId)) {
+            this.bookReviewCommentUser = this.bookReviewCommentList.map(() => ({
+              username: mockUser.username,
+              headImage: mockUser.avatar
+            }));
+        }
         // 只允许id为2（悉达多）为收藏
         this.isCollect = reviewId === 2;
       }

@@ -308,8 +308,24 @@ export default {
       createID: 1
     },
     members: [],
-    tasks: [],
-    hotForum: [],
+    tasks: [
+      { taskContent: "阅读《红楼梦》前五回", createTime: "2025-04-10" },
+      { taskContent: "讨论《悉达多》的哲学思想", createTime: "2025-04-12" },
+    ],
+    hotForum: [
+      {
+        forumID: 1,
+        topic: "如何评价《红楼梦》的悲剧结尾？",
+        userID: 1,
+        time: "2025-04-15 10:00",
+      },
+      {
+        forumID: 2,
+        topic: "你从《被讨厌的勇气》中学到了什么？",
+        userID: 2,
+        time: "2025-04-18 14:30",
+      },
+    ],
     groupApplyUser: [],
     groupApplyList: [],
     model: 1,
@@ -358,39 +374,26 @@ export default {
           }
         ];
         
-        // Mock任务数据
+        // 模拟任务数据
         this.tasks = [
-          {
-            taskContent: '阅读《红楼梦》并写读书笔记',
-            createTime: '2024-01-01'
-          },
-          {
-            taskContent: '分享一篇文学创作',
-            createTime: '2024-01-02'
-          },
-          {
-            taskContent: '参与本周的读书讨论',
-            createTime: '2024-01-03'
-          }
+          { taskContent: "阅读《红楼梦》前五回", createTime: "2025-04-10" },
+          { taskContent: "讨论《悉达多》的哲学思想", createTime: "2025-04-12" },
         ];
         
-        // Mock热门讨论数据
+        // 模拟热门讨论
         this.hotForum = [
           {
             forumID: 1,
-            topic: '《红楼梦》中的人物形象分析',
-            createTime: '2024-01-01'
+            topic: "如何评价《红楼梦》的悲剧结尾？",
+            userID: 1,
+            time: "2025-04-15 10:00",
           },
           {
             forumID: 2,
-            topic: '现代文学与传统文学的对比',
-            createTime: '2024-01-02'
+            topic: "你从《被讨厌的勇气》中学到了什么？",
+            userID: 2,
+            time: "2025-04-18 14:30",
           },
-          {
-            forumID: 3,
-            topic: '如何提高写作水平',
-            createTime: '2024-01-03'
-          }
         ];
         
         // 设置用户为成员
