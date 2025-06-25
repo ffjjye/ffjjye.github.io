@@ -106,8 +106,8 @@ export default {
       const reviewId = parseInt(this.$route.params.id);
       if(reviewId === 4) {
         this.bookReviewInfo = {
-          title: "111",
-          content: "很好",
+          title: "测试书评",
+          content: "传世经典，值得一读。",
           score: 5,
           userID: "fjy",
           username: "fjy"

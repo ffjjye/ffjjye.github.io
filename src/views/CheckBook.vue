@@ -152,9 +152,9 @@ export default {
           });
           this.bookReviewList.push({
             reviewTime: "2025.6.25",
-            title: "111",
+            title: "测试书评",
             userID: "fjy",
-            content: "很好",
+            content: "传世经典，值得一读。",
             score: 5,
             bookReviewID: 4 
           });

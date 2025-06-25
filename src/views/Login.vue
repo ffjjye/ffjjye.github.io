@@ -166,7 +166,7 @@ export default {
       this.$store.commit("setIsTeacher",false);
       // Using setTimeout to make the snackbar visible before navigation
       setTimeout(() => {
-        this.$router.push({ path: "/Home" });
+        this.$router.push({ path: "/" });
       }, 1000);
     },
     Register() {

@@ -106,6 +106,16 @@ export default {
         score: review.rating
       }));
 
+      // 添加我们自定义的测试书评
+      this.myBookReview.push({
+        bookReviewID: 4,
+        reviewTime: "2025.6.25",
+        title: "测试书评",
+        author: mockUser.username,
+        content: "传世经典，值得一读。",
+        score: 5
+      });
+
       // 收藏书评只显示 id 为 2（悉达多）的书评
       this.bookReviewCollection = mockReviews
         .filter(review => review.id === 2)

@@ -44,16 +44,6 @@
             <v-list-item-content>
               <v-list-item-title v-text="member.username"></v-list-item-title>
               <v-spacer></v-spacer>
-              <v-btn
-                v-if="$store.state.person.userID == group.createID"
-                text
-                color="red"
-                right
-                small
-                max-width="20px"
-                @click="removeMember(member)"
-                >删除</v-btn
-              >
             </v-list-item-content>
           </v-list-item>
         </v-list-item-group>

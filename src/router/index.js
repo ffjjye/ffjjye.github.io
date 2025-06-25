@@ -40,8 +40,8 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "Login",
-    component: Login,
+    name: "Home",
+    component: Home,
   },
   {
     path:"/Admin",
@@ -54,9 +54,9 @@ const routes = [
     component: BlockPerson,
   },
     {
-    path:"/Home",
-    name:"Home",
-    component:Home,
+    path:"/Login",
+    name:"Login",
+    component:Login,
   },
   {
     path:"/Register",

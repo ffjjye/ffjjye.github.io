@@ -101,7 +101,7 @@ export default {
         tag: group.description,
         memberNum: group.memberCount,
         introduce: group.description,
-        createID: 1 // mock创建者ID
+        createID: group.name === '读书会' ? 2 : 1 // 读书会创建者ID为2，其他为1
       }));
     },
     
